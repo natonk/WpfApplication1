@@ -8,11 +8,12 @@
         Title="Estimations and Planning" Height="350" Width="525">
     <Grid>
         <TextBlock x:Name="Start_Intro" HorizontalAlignment="Left" Margin="39,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="354" Text="Welcome, you need to either open an existing workspace or create a new one. Make your choice and then touch 'GO!'&#xD;&#xA;"/>
-        <RadioButton x:Name="rbStartNewStdWS" Content="New Std Workspace (WS)" HorizontalAlignment="Left" Margin="46,122,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="rbStartNewStdWS" Content="New Std Workspace (WS)" HorizontalAlignment="Left" Margin="46,111,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton x:Name="rbStartNewEmptyWS" Content="New Empty Workspace (WS)" HorizontalAlignment="Left" Margin="46,72,0,0" VerticalAlignment="Top"/>
         <Button x:Name="GoButton" Content="GO!" HorizontalAlignment="Left" Margin="46,230,0,0" VerticalAlignment="Top" Width="155" Height="54" Click="button_Click"/>
-        <RadioButton x:Name="rbContinueWithLastUsedWS" Content="Continue with last used Workspace (WS)" HorizontalAlignment="Left" Margin="46,172,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbContinueWithLastUsedWS" Content="Continue with last used Workspace (WS)" HorizontalAlignment="Left" Margin="46,193,0,0" VerticalAlignment="Top"/>
         <Button x:Name="EndButton" Content="End!" HorizontalAlignment="Left" Margin="302,230,0,0" VerticalAlignment="Top" Width="155" Height="54" Click="button_Click"/>
+        <RadioButton x:Name="rbStartNewExampleWS" Content="New Example Workspace (WS)" HorizontalAlignment="Left" Margin="46,152,0,0" VerticalAlignment="Top" IsChecked="True"/>
 
     </Grid>
 </Window>

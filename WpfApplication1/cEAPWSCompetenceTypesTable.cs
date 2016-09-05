@@ -14,7 +14,7 @@ namespace EstimationsAndPlanning
         public cEAPWSCompetenceTypesTable(MySqlConnection aConnection) : base(aConnection)
         {
             tableName = "Competences";
-            columns = "competenceId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(40), description TEXT";
+            columns = "competenceId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(40) UNIQUE, description TEXT";
             keys = "";
 
         }

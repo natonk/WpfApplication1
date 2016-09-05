@@ -66,9 +66,16 @@ namespace EstimationsAndPlanning
                 cEAPWSWPTable wpTable = new cEAPWSWPTable(m_DatabaseConnection);
                 wpTable.createTable();
 
-                cEAPWSEstimatesTable estTable = new cEAPWSEstimatesTable(m_DatabaseConnection);
-                estTable.createTable();
+                cEAPWSEstTimePeriodTable estTimePeriodTable = new cEAPWSEstTimePeriodTable(m_DatabaseConnection);
+                estTimePeriodTable.createTable();
 
+                cEAPWSJobsTable jobsTable = new cEAPWSJobsTable(m_DatabaseConnection);
+                jobsTable.createTable();
+
+                cEAPWSEstTimesTable estTimesTable = new cEAPWSEstTimesTable(m_DatabaseConnection);
+                estTimesTable.createTable();
+
+                
                 //this.addCompetenceTypesTable();
                 //this.addWPTable();
                 //this.addEndTimesTable();
@@ -100,16 +107,7 @@ namespace EstimationsAndPlanning
                 cEAPWSCompetenceTypesTable competenceTypesTable = new cEAPWSCompetenceTypesTable(m_DatabaseConnection);
                 status = competenceTypesTable.stdPopulateTable();
             }
-            if (EAP_STATUS.OK == status)
-            {
-                cEAPWSWPTable wpTable = new cEAPWSWPTable(m_DatabaseConnection);
-                status = wpTable.stdPopulateTable();
-            }
-            if (EAP_STATUS.OK == status)
-            {
-                cEAPWSEstimatesTable estTable = new cEAPWSEstimatesTable(m_DatabaseConnection);
-                status = estTable.stdPopulateTable();
-            }
+            
             if (EAP_STATUS.OK == status)
             {
                 //status = this.populateStdEndTimeTables();
@@ -132,21 +130,6 @@ namespace EstimationsAndPlanning
 
 
    
-        protected EAP_STATUS addEstimatesTable()
-        {
-            MySqlCommand cmd = this.m_DatabaseConnection.CreateCommand();
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS Estimates (id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wpId INTEGER, competenceId INTEGER, M36 SMALLINT UNSIGNED, M35 SMALLINT UNSIGNED, M34 SMALLINT UNSIGNED, comment VARCHAR(255), created DATETIME, modified DATETIME, FOREIGN KEY (wpId) REFERENCES WorkPackage(wpId), FOREIGN KEY (competenceId) REFERENCES Competence(competenceId))";
-            cmd.ExecuteNonQuery();
-            return EAP_STATUS.OK;
-        }
-
-        protected EAP_STATUS addWPTable()
-        {
-            MySqlCommand cmd = this.m_DatabaseConnection.CreateCommand();
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS WorkPackage (wpId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wpType INTEGER, description TEXT, created DATETIME, modified DATETIME, FOREIGN KEY (wpType) REFERENCES WPTypes(wpType))";
-            cmd.ExecuteNonQuery();
-            return EAP_STATUS.OK;
-        }
         protected EAP_STATUS addEndTimesTable() 
         {
             MySqlCommand cmd = this.m_DatabaseConnection.CreateCommand();
@@ -155,14 +138,103 @@ namespace EstimationsAndPlanning
             return EAP_STATUS.OK;
         }
 
-        protected EAP_STATUS populateStdEndTimeTables()
+        public EAP_STATUS populateDatabaseWithExamples(String aDataBaseName)
         {
-            MySqlCommand cmd = this.m_DatabaseConnection.CreateCommand();
-            cmd.CommandText = "INSERT INTO EndTimes (date, calender, wp) VALUES ('2017-05-30', 1, 1)";
+            EAP_STATUS status = EAP_STATUS.OK;
+            int lastAddedWPId = 0;
+            int lastAddedJobId = 0;
 
-            cmd.ExecuteNonQuery();
-            
-            return EAP_STATUS.OK;
+            const int compSW = 1;
+            const int compSysVer = 2;
+            const int compMech = 3;
+            const int compElec = 4;
+            const int compTechInfo = 5;
+            const int compProj = 6;
+
+            const int wpTypeR = 1;
+            const int wpTypeT = 2;
+            const int wpTypeP = 3;
+            const int wpTypeM = 4;
+
+
+            cEAPWSWPTable wpTable = new cEAPWSWPTable(m_DatabaseConnection);
+            cEAPWSJobsTable jobsTable = new cEAPWSJobsTable(m_DatabaseConnection);
+            cEAPWSEstTimesTable estTimesTable = new cEAPWSEstTimesTable(m_DatabaseConnection);
+
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeR, "'R - Brushless Main Motor'", "'Research if it is feasible from a cost and performance perspective to use a brushless main motor. If so the project shall have a recommendation of supplier and a specific motor'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "'Work for implemetation of test sw for lab purposes'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 80, 2);
+                    }
+
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compElec, "'Work for evaluating different options regarding brushless main motor'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 6);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Small follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 25, 6);
+                    }
+                }
+            }
+
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeR, "'R - RFID identification of accessories'", "'Research if it is feasible from a cost and performance perspective to use RFID to detect differnt attached accessories. Identify associated/possible features. Evaluate customer value.'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "'Work for implemetation of test sw for lab purposes, Workshops for feature identification'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 3);
+                    }
+
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compElec, "'Work for evaluating different options regarding RFID identification'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 6);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 80, 6);
+                    }
+                }
+            }
+            return status;
         }
 
     }
