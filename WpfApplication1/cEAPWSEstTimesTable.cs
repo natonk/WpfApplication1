@@ -15,17 +15,18 @@ namespace EstimationsAndPlanning
         public cEAPWSEstTimesTable(MySqlConnection aConnection) : base(aConnection)
         {
             tableName = "EstTimes";
-            columns = "estTimeId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, jobId INTEGER, estType ENUM('MIN', 'LIKELY', 'MAX'),hours SMALLINT UNSIGNED, created DATETIME";
-            keys = ", FOREIGN KEY (jobId) REFERENCES Jobs(jobId)";
+            columns = "estTimeId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, jobId INTEGER, estPeriod INTEGER, estType ENUM('MIN', 'LIKELY', 'MAX'),hours SMALLINT UNSIGNED, created DATETIME";
+            keys = ", FOREIGN KEY (jobId) REFERENCES Jobs(jobId), FOREIGN KEY (estPeriod) REFERENCES EstTimePeriod(timePeriodId)";
         }
 
         public EAP_STATUS addEstimation( int aJobId, UInt16 aNbrHours, UInt16 aNbrMonths, UInt16 endOffsetMonths = 0  )
         {
             EAP_STATUS status = EAP_STATUS.OK;
 
-            string fields = "jobId, estType, hours, created";
+            string fields = "jobId, estPeriod, estType, hours, created";
             string values;
             int jobId = aJobId;
+            int timePeriod;
             string estType = "'LIKELY'";
             string hours;
             string created = "UTC_TIMESTAMP()";
@@ -42,8 +43,9 @@ namespace EstimationsAndPlanning
             {
                 if ((EAP_STATUS.OK == status) && (monthEst[i] != 0))
                 {
+                    timePeriod = i + 1;
                     hours = (monthEst[i]).ToString();
-                    values = jobId + ", " + estType + ", " + hours + ", " + created;
+                    values = jobId + ", " + timePeriod + ", " + estType + ", " + hours + ", " + created;
                     status = this.addRow(fields, values);
                 }
             }

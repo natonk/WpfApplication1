@@ -234,6 +234,680 @@ namespace EstimationsAndPlanning
                     }
                 }
             }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeR, "'R - Blender drive line  Gen 4'", "'Research a solution for a new drive line (motor, transmission) lighter, longer life, higher speed and more torque. Evaluate customer value.'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "'Work for for investigating, specifying and elimanate risks'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 2000, 12);
+                    }
+
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 160, 12);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeR, "'R - Blender cover set  Gen 4'", "'Research a solution for a new cover set. Module, reusable for many models and a modern look'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "'Work for for investigating, preliminar design, specifying and elimanate risks'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 2000, 12);
+                    }
+
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 160, 12);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeT, "'T - Brushless main motor'", "'Develop technology for first use in a product accordint to specification decided based on coresponding R-project'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "'Work for implemetation of driver of brushless main motor'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 6, 3);
+                    }
+
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "'Work for verification of quality and usability of brushless main motor'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 300, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 6,6);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compElec, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 6, 6);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 80, 1, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 240, 12);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeT, "'T - RFID identification of accessories'", "'Develop technology for first use in a product according to specification decided based on coresponding R-project. Includes development/modofocation of 3 accesories to use RFID'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 6, 3);
+                    }
+
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 80, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 6, 6);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compElec, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 6, 6);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 180, 3, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 240, 12);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeT, "'T - Facelift Main Cover Design'", "'Complete new cover set'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 30, 8, 4);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 800, 8, 6);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 10, 4);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeT, "'T - Battery Low warning to App'", "'Add battery low warning to existing apps for ios and android'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 100, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 20, 1, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Tiny follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 5, 2, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 2 Low-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 6, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 400, 6, 3);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 100, 9, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 2 Mid-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 6, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 400, 6, 3);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 100, 9, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 2 High-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 6, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 400, 6, 3);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 100, 9, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 3 Low-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 300, 6, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 400, 6, 3);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 2, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 300, 9, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 3 Mid-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 300, 6, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 400, 6, 3);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 2, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 300, 9, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 3 High-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 120, 2, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 300, 6, 1);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 400, 6, 3);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 200, 2, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compProj, "'Medium follow up work'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 300, 9, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeM, "'M - Product Maintenance Blenders Gen 2'", "'Planned Maintenance for 3 years after launch'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 180, 36, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 180, 36, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 360, 36, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 72, 36, 0);
+                    }
+                }
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                // ****** ADD WORKPACKAGE ******************
+                status = wpTable.addWP(wpTypeM, "'M - Product Maintenance Blenders Gen 3'", "'Planned Maintenance for 3 years after launch'", ref lastAddedWPId);
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSW, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 360, 36, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compSysVer, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 240, 36, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compMech, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 360, 36, 0);
+                    }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD JOB ******************
+                    status = jobsTable.addJob(lastAddedWPId, compTechInfo, "''", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 72, 36, 0);
+                    }
+                }
+            }
             return status;
         }
 
