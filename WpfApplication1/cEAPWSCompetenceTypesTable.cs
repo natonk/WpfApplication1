@@ -14,7 +14,7 @@ namespace EstimationsAndPlanning
         public cEAPWSCompetenceTypesTable(MySqlConnection aConnection) : base(aConnection)
         {
             tableName = "Competences";
-            columns = "competenceId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(40), description TEXT";
+            columns = "compId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, compName VARCHAR(40) UNIQUE, compDescription TEXT";
             keys = "";
 
         }
@@ -22,7 +22,7 @@ namespace EstimationsAndPlanning
         public override EAP_STATUS stdPopulateTable()
         {
             EAP_STATUS status = EAP_STATUS.OK;
-            string fields = "name, description";
+            string fields = "compName, compDescription";
             string values;
             string name;
             string description;

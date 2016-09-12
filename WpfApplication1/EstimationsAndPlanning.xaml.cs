@@ -34,7 +34,16 @@ namespace WpfApplication1
         {
             if (GoButton == sender)
             {
-                if (rbStartNewStdWS.IsChecked == true)
+                if (rbStartNewExampleWS.IsChecked == true)
+                {
+                    //MessageBox.Show("Creating a Example Workspace");
+                    myWorkSpace = new cEAPWorkspace();
+                    myWorkSpace.createNewStdDatabase("EAPTestDataBaseExample");
+                    myWorkSpace.populateDatabaseWithExamples("EAPTestDataBaseExample");
+
+
+                }
+                else if (rbStartNewStdWS.IsChecked == true)
                 {
                     //MessageBox.Show("Creating a STD Workspace");
                     myWorkSpace = new cEAPWorkspace();
@@ -60,6 +69,7 @@ namespace WpfApplication1
                     MessageBox.Show("You need to select something");
 
                 }
+                MessageBox.Show("Database created succesfully!");
             }
             else if (EndButton == sender)
             {

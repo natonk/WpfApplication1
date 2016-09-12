@@ -20,7 +20,7 @@ namespace EstimationsAndPlanning
             connection = aConnection;
         }
 
-        public EAP_STATUS createTable()
+        public virtual EAP_STATUS createTable()
         {
             EAP_STATUS status = EAP_STATUS.OK;
             MySqlCommand cmd = connection.CreateCommand();
@@ -37,8 +37,13 @@ namespace EstimationsAndPlanning
             return status;
         }
 
-        public abstract EAP_STATUS stdPopulateTable();
-        
+        public virtual EAP_STATUS stdPopulateTable()
+        {
+            EAP_STATUS status = EAP_STATUS.OK;
+            return status;
+        }
+
+
         protected EAP_STATUS addRow(string fields, string values)
         {
             EAP_STATUS status = EAP_STATUS.OK;
@@ -53,6 +58,24 @@ namespace EstimationsAndPlanning
                 Console.WriteLine(ex.ToString());
                 status = EAP_STATUS.ADD_ROW_FAILED;
             }
+            return status;
+        }
+
+        protected EAP_STATUS addRow(string fields, string values, ref int newRowId)
+        {
+            EAP_STATUS status = EAP_STATUS.OK;
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO " + tableName + " (" + fields + ") VALUES (" + values + ")";
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                status = EAP_STATUS.ADD_ROW_FAILED;
+            }
+            newRowId = (int)(cmd.LastInsertedId);
             return status;
         }
 

@@ -14,27 +14,29 @@ namespace EstimationsAndPlanning
         public cEAPWSWPTable(MySqlConnection aConnection) : base(aConnection)
         {
             tableName = "WorkPackage";
-            columns = "wpId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wpType INTEGER, description TEXT, created DATETIME, modified DATETIME";
-            keys = ", FOREIGN KEY (wpType) REFERENCES WPTypes(wpType)";
+            columns = "wpId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wpTypeId INTEGER, wpName VARCHAR(50) UNIQUE, wpDescription TEXT, wpCreated DATETIME, wpModified DATETIME";
+            keys = ", FOREIGN KEY (wpTypeId) REFERENCES WPTypes(wpTypeId)";
         }
 
-        public override EAP_STATUS stdPopulateTable()
+        public EAP_STATUS addWP( int aWPType, string aWPName, string aWPDescription, ref int newWPId)
         {
             EAP_STATUS status = EAP_STATUS.OK;
-            string fields = "wpType, description, created, modified";
+            string fields = "wpTypeId, wpName, wpDescription, wpCreated, wpModified";
             string values;
-            string wpType;
-            string description;
+            string wpTypeId;
+            string wpName;
+            string wpDescription;
             string created;
             string modified;
 
             created = "UTC_TIMESTAMP()";
             modified = "UTC_TIMESTAMP()";
 
-            wpType = "1";
-            description = "'RFID identification of accessories'";
-            values = wpType + ", " + description + ", " + created + ", " + modified;
-            status = this.addRow(fields, values);
+            wpTypeId = aWPType.ToString();
+            wpName = aWPName;
+            wpDescription = aWPDescription;
+            values = wpTypeId + ", " + wpName + ", " + wpDescription + ", " + created + ", " + modified;
+            status = this.addRow(fields, values, ref newWPId);
 
          
             return status;
