@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 namespace EstimationsAndPlanning
 {
 
-    enum EAP_STATUS { OK, FAILED, CREATE_TABLE_FAILED, CREATE_DATABASE_FAILED, ADD_ROW_FAILED };
+    enum EAP_STATUS { OK, FAILED, CREATE_TABLE_FAILED, CREATE_DATABASE_FAILED, ADD_ROW_FAILED, CREATE_VIEW_FAILED };
 
     class cEAPWorkspace
     {
@@ -75,12 +75,26 @@ namespace EstimationsAndPlanning
                 cEAPWSEstTimesTable estTimesTable = new cEAPWSEstTimesTable(m_DatabaseConnection);
                 estTimesTable.createTable();
 
-                
-                //this.addCompetenceTypesTable();
-                //this.addWPTable();
-                //this.addEndTimesTable();
-                //this.addEstimatesTable();
+                cEAPWSCalenderTable calenderTable = new cEAPWSCalenderTable(m_DatabaseConnection);
+                calenderTable.createTable();
 
+                cEAPWSCalenderItemTable calenderItemTable = new cEAPWSCalenderItemTable(m_DatabaseConnection);
+                calenderItemTable.createTable();
+
+                cEAPWSNewestEstView newestEstView = new cEAPWSNewestEstView(m_DatabaseConnection);
+                newestEstView.createView();
+
+                cEAPWSJobEstView jobEstView = new cEAPWSJobEstView(m_DatabaseConnection);
+                jobEstView.createView();
+
+                cEAPWSWPJobEstView wpJobEstView = new cEAPWSWPJobEstView(m_DatabaseConnection);
+                wpJobEstView.createView();
+
+                cEAPWSNewestWPJobEstView newestWPJobEstView = new cEAPWSNewestWPJobEstView(m_DatabaseConnection);
+                newestWPJobEstView.createView();
+
+                cEAPWSCalenderedNewestWPJobEstView caledNewestWPJobEstView = new cEAPWSCalenderedNewestWPJobEstView(m_DatabaseConnection);
+                caledNewestWPJobEstView.createView();
             }
             catch (Exception ex)
             {
@@ -156,11 +170,24 @@ namespace EstimationsAndPlanning
             const int wpTypeP = 3;
             const int wpTypeM = 4;
 
+            int calenderAgressive = 0;
+            int calenderSafe = 0;
+
 
             cEAPWSWPTable wpTable = new cEAPWSWPTable(m_DatabaseConnection);
             cEAPWSJobsTable jobsTable = new cEAPWSJobsTable(m_DatabaseConnection);
             cEAPWSEstTimesTable estTimesTable = new cEAPWSEstTimesTable(m_DatabaseConnection);
+            cEAPWSCalenderTable calenderTable = new cEAPWSCalenderTable(m_DatabaseConnection);
+            cEAPWSCalenderItemTable calenderItemTable = new cEAPWSCalenderItemTable(m_DatabaseConnection);
 
+            if (EAP_STATUS.OK == status)
+            {
+                status = calenderTable.addCalender( "'PM -Agressive'", "'Product Managers aggresiv suggestion for product/project roadmap'", ref calenderAgressive);
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                status = calenderTable.addCalender( "'PM -Safe'", "'Product Managers safe suggestion for product/project roadmap'", ref calenderSafe);
+            }
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
@@ -169,6 +196,11 @@ namespace EstimationsAndPlanning
                 {
                     // ****** ADD JOB ******************
                     status = jobsTable.addJob(lastAddedWPId, compSW, "'Work for implemetation of test sw for lab purposes'", ref lastAddedJobId);
+                    if (EAP_STATUS.OK == status)
+                    {
+                        // ****** ADD ESTIMATES ******************
+                        status = estTimesTable.addEstimation(lastAddedJobId, 80, 2, 0, "20160824120000");
+                    }
                     if (EAP_STATUS.OK == status)
                     {
                         // ****** ADD ESTIMATES ******************
@@ -195,6 +227,13 @@ namespace EstimationsAndPlanning
                         // ****** ADD ESTIMATES ******************
                         status = estTimesTable.addEstimation(lastAddedJobId, 25, 6);
                     }
+                }
+                if (EAP_STATUS.OK == status)
+                {
+                    // ****** ADD CALENDER ITEM ******************
+                    DateTime date = new DateTime(2016,01,23, 12, 0, 0);
+                    date = date.ToUniversalTime();
+                    status = calenderItemTable.addCalenderItem(calenderAgressive, lastAddedWPId, date.ToString());
                 }
             }
 

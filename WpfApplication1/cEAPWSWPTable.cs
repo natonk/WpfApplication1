@@ -14,14 +14,14 @@ namespace EstimationsAndPlanning
         public cEAPWSWPTable(MySqlConnection aConnection) : base(aConnection)
         {
             tableName = "WorkPackage";
-            columns = "wpId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wpTypeId INTEGER, wpName VARCHAR(50) UNIQUE, description TEXT, created DATETIME, modified DATETIME";
+            columns = "wpId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wpTypeId INTEGER, wpName VARCHAR(50) UNIQUE, wpDescription TEXT, wpCreated DATETIME, wpModified DATETIME";
             keys = ", FOREIGN KEY (wpTypeId) REFERENCES WPTypes(wpTypeId)";
         }
 
         public EAP_STATUS addWP( int aWPType, string aWPName, string aWPDescription, ref int newWPId)
         {
             EAP_STATUS status = EAP_STATUS.OK;
-            string fields = "wpTypeId, wpName, description, created, modified";
+            string fields = "wpTypeId, wpName, wpDescription, wpCreated, wpModified";
             string values;
             string wpTypeId;
             string wpName;

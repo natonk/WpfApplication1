@@ -14,14 +14,8 @@ namespace EstimationsAndPlanning
         public cEAPWSEstTimePeriodTable(MySqlConnection aConnection) : base(aConnection)
         {
             tableName = "EstTimePeriod";
-            columns = "timePeriodId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, description CHAR(15) UNIQUE";
+            columns = "timePeriodId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, timePeriodDescription CHAR(15) UNIQUE";
             keys = "";
-        }
-
-        public override EAP_STATUS stdPopulateTable()
-        {
-            EAP_STATUS status = EAP_STATUS.OK;
-            return status;
         }
 
         public override EAP_STATUS createTable()
@@ -31,7 +25,7 @@ namespace EstimationsAndPlanning
 
             base.createTable();
 
-            string fields = "description";
+            string fields = "timePeriodDescription";
             string values;
             string description;
 

@@ -15,15 +15,15 @@ namespace EstimationsAndPlanning
         public cEAPWSEstTimesTable(MySqlConnection aConnection) : base(aConnection)
         {
             tableName = "EstTimes";
-            columns = "estTimeId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, jobId INTEGER, estPeriod INTEGER, estType ENUM('MIN', 'LIKELY', 'MAX'),hours SMALLINT UNSIGNED, created DATETIME";
+            columns = "estTimeId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, jobId INTEGER, estPeriod INTEGER, estType ENUM('MIN', 'LIKELY', 'MAX'),hours SMALLINT UNSIGNED, estCreated DATETIME";
             keys = ", FOREIGN KEY (jobId) REFERENCES Jobs(jobId), FOREIGN KEY (estPeriod) REFERENCES EstTimePeriod(timePeriodId)";
         }
 
-        public EAP_STATUS addEstimation( int aJobId, UInt16 aNbrHours, UInt16 aNbrMonths, UInt16 endOffsetMonths = 0  )
+        public EAP_STATUS addEstimation( int aJobId, UInt16 aNbrHours, UInt16 aNbrMonths, UInt16 endOffsetMonths = 0, string dateCreatedString = ""  )
         {
             EAP_STATUS status = EAP_STATUS.OK;
 
-            string fields = "jobId, estPeriod, estType, hours, created";
+            string fields = "jobId, estPeriod, estType, hours, estCreated";
             string values;
             int jobId = aJobId;
             int timePeriod;
@@ -36,7 +36,13 @@ namespace EstimationsAndPlanning
             if (MAX_NR_HOURS < aNbrHours) { aNbrHours = MAX_NR_HOURS; }
             if (MAX_NR_MONTHS < aNbrMonths) { aNbrMonths = MAX_NR_MONTHS; }
             if (MAX_NR_MONTHS < (aNbrMonths+ endOffsetMonths)) { endOffsetMonths = (UInt16)(MAX_NR_MONTHS-aNbrMonths); }
-            
+
+            // set created date if explicitly set
+            if ("" != dateCreatedString)
+            {
+                created = dateCreatedString;
+            }
+
             jobId = aJobId;
             status = this.distributeEstimate(aNbrHours, aNbrMonths, distributionEnum.EVEN, endOffsetMonths);
             for (int i = 35; i >= 0; i--)

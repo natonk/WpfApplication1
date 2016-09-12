@@ -86,6 +86,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="cEAPWorkspace.cs" />
+    <Compile Include="cEAPWSCalenderTable.cs" />
+    <Compile Include="cEAPWSCalenderItemTable.cs" />
+    <Compile Include="cEAPWSCalenderedNewestWPJobEstView.cs" />
+    <Compile Include="cEAPWSNewestWPJobEstView.cs" />
+    <Compile Include="cEAPWSWPJobEstView.cs" />
+    <Compile Include="cEAPWSJobEstView.cs" />
+    <Compile Include="cEAPWSView.cs" />
     <Compile Include="cEAPWSTable.cs" />
     <Compile Include="cEAPWSProjectTypesTable.cs" />
     <Compile Include="cEAPWSCompetenceTypesTable.cs" />
@@ -93,6 +100,7 @@
     <Compile Include="cEAPWSEstTimesTable.cs" />
     <Compile Include="cEAPWSEstTimePeriodTable.cs" />
     <Compile Include="cEAPWSJobsTable.cs" />
+    <Compile Include="cEAPWSNewestEstView.cs" />
     <Compile Include="EstimationsAndPlanning.xaml.cs">
       <DependentUpon>EstimationsAndPlanning.xaml</DependentUpon>
       <SubType>Code</SubType>
