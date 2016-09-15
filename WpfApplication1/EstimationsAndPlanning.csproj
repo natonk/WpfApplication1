@@ -90,12 +90,15 @@
     <Compile Include="cEAPWSCalenderItemTable.cs" />
     <Compile Include="cEAPWSCalenderedNewestWPJobEstView.cs" />
     <Compile Include="cEAPWSNewestWPJobEstView.cs" />
+    <Compile Include="cEAPWSUserTypeTable.cs" />
     <Compile Include="cEAPWSWPJobEstView.cs" />
     <Compile Include="cEAPWSJobEstView.cs" />
     <Compile Include="cEAPWSView.cs" />
     <Compile Include="cEAPWSTable.cs" />
     <Compile Include="cEAPWSProjectTypesTable.cs" />
     <Compile Include="cEAPWSCompetenceTypesTable.cs" />
+    <Compile Include="cEAPWSUserTable.cs" />
+    <Compile Include="cEAPWSWSTable.cs" />
     <Compile Include="cEAPWSWPTable.cs" />
     <Compile Include="cEAPWSEstTimesTable.cs" />
     <Compile Include="cEAPWSEstTimePeriodTable.cs" />

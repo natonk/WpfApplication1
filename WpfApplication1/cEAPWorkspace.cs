@@ -60,6 +60,15 @@ namespace EstimationsAndPlanning
                 cEAPWSProjectTypesTable projectTypesTable = new cEAPWSProjectTypesTable( m_DatabaseConnection );
                 projectTypesTable.createTable();
 
+                cEAPWSUserTypeTable userTypeTable = new cEAPWSUserTypeTable(m_DatabaseConnection);
+                userTypeTable.createTable();
+
+                cEAPWSWSTable wsTable = new cEAPWSWSTable(m_DatabaseConnection);
+                wsTable.createTable();
+
+                cEAPWSUserTable userTable = new cEAPWSUserTable(m_DatabaseConnection);
+                userTable.createTable();
+
                 cEAPWSCompetenceTypesTable competenceTypesTable = new cEAPWSCompetenceTypesTable(m_DatabaseConnection);
                 competenceTypesTable.createTable();
 
@@ -125,6 +134,8 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 //status = this.populateStdEndTimeTables();
+                cEAPWSUserTypeTable userTypeTable = new cEAPWSUserTypeTable(m_DatabaseConnection);
+                status = userTypeTable.stdPopulateTable();
             }
             return status;
         }
@@ -165,33 +176,66 @@ namespace EstimationsAndPlanning
             const int compTechInfo = 5;
             const int compProj = 6;
 
+            const int userEstimator = 1;
+            const int userScheduler = 2;
+
+            const int dfUserKalle = 2;
+            const int dfUserSimon = 3;
+            const int dfUserUlrika = 4;
+
+
+
             const int wpTypeR = 1;
             const int wpTypeT = 2;
             const int wpTypeP = 3;
             const int wpTypeM = 4;
 
+            int wsId = 0;
+
             int calenderAgressive = 0;
             int calenderSafe = 0;
-
+            
 
             cEAPWSWPTable wpTable = new cEAPWSWPTable(m_DatabaseConnection);
             cEAPWSJobsTable jobsTable = new cEAPWSJobsTable(m_DatabaseConnection);
             cEAPWSEstTimesTable estTimesTable = new cEAPWSEstTimesTable(m_DatabaseConnection);
             cEAPWSCalenderTable calenderTable = new cEAPWSCalenderTable(m_DatabaseConnection);
             cEAPWSCalenderItemTable calenderItemTable = new cEAPWSCalenderItemTable(m_DatabaseConnection);
-
+            cEAPWSUserTable userTable = new cEAPWSUserTable(m_DatabaseConnection);
+            cEAPWSWSTable wsTable = new cEAPWSWSTable(m_DatabaseConnection);
+            
             if (EAP_STATUS.OK == status)
             {
-                status = calenderTable.addCalender( "'PM -Agressive'", "'Product Managers aggresiv suggestion for product/project roadmap'", ref calenderAgressive);
+                status = wsTable.addWS("'Blenders.Inc'", "'Blenders.Inc Brazil '", ref wsId);
             }
             if (EAP_STATUS.OK == status)
             {
-                status = calenderTable.addCalender( "'PM -Safe'", "'Product Managers safe suggestion for product/project roadmap'", ref calenderSafe);
+                status = userTable.addUser( wsId, dfUserKalle, userEstimator);
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                status = userTable.addUser(wsId, dfUserSimon, userEstimator);
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                status = userTable.addUser(wsId, dfUserSimon, userScheduler);
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                status = userTable.addUser(wsId, dfUserUlrika, userScheduler);
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                status = calenderTable.addCalender( wsId, "'PM -Agressive'", "'Product Managers aggresiv suggestion for product/project roadmap'", ref calenderAgressive);
+            }
+            if (EAP_STATUS.OK == status)
+            {
+                status = calenderTable.addCalender( wsId, "'PM -Safe'", "'Product Managers safe suggestion for product/project roadmap'", ref calenderSafe);
             }
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeR, "'R - Brushless Main Motor'", "'Research if it is feasible from a cost and performance perspective to use a brushless main motor. If so the project shall have a recommendation of supplier and a specific motor'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeR, "'R - Brushless Main Motor'", "'Research if it is feasible from a cost and performance perspective to use a brushless main motor. If so the project shall have a recommendation of supplier and a specific motor'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -240,7 +284,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeR, "'R - RFID identification of accessories'", "'Research if it is feasible from a cost and performance perspective to use RFID to detect differnt attached accessories. Identify associated/possible features. Evaluate customer value.'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeR, "'R - RFID identification of accessories'", "'Research if it is feasible from a cost and performance perspective to use RFID to detect differnt attached accessories. Identify associated/possible features. Evaluate customer value.'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -276,7 +320,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeR, "'R - Blender drive line  Gen 4'", "'Research a solution for a new drive line (motor, transmission) lighter, longer life, higher speed and more torque. Evaluate customer value.'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeR, "'R - Blender drive line  Gen 4'", "'Research a solution for a new drive line (motor, transmission) lighter, longer life, higher speed and more torque. Evaluate customer value.'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -302,7 +346,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeR, "'R - Blender cover set  Gen 4'", "'Research a solution for a new cover set. Module, reusable for many models and a modern look'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeR, "'R - Blender cover set  Gen 4'", "'Research a solution for a new cover set. Module, reusable for many models and a modern look'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -328,7 +372,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeT, "'T - Brushless main motor'", "'Develop technology for first use in a product accordint to specification decided based on coresponding R-project'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeT, "'T - Brushless main motor'", "'Develop technology for first use in a product accordint to specification decided based on coresponding R-project'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -394,7 +438,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeT, "'T - RFID identification of accessories'", "'Develop technology for first use in a product according to specification decided based on coresponding R-project. Includes development/modofocation of 3 accesories to use RFID'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeT, "'T - RFID identification of accessories'", "'Develop technology for first use in a product according to specification decided based on coresponding R-project. Includes development/modofocation of 3 accesories to use RFID'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -460,7 +504,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeT, "'T - Facelift Main Cover Design'", "'Complete new cover set'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeT, "'T - Facelift Main Cover Design'", "'Complete new cover set'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -495,7 +539,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeT, "'T - Battery Low warning to App'", "'Add battery low warning to existing apps for ios and android'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeT, "'T - Battery Low warning to App'", "'Add battery low warning to existing apps for ios and android'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -530,7 +574,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 2 Low-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeP, "'P - Blender Gen 2 Low-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -585,7 +629,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 2 Mid-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeP, "'P - Blender Gen 2 Mid-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -640,7 +684,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 2 High-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeP, "'P - Blender Gen 2 High-Range classic'", "'Facelift of existing model'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -695,7 +739,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 3 Low-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeP, "'P - Blender Gen 3 Low-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -750,7 +794,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 3 Mid-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeP, "'P - Blender Gen 3 Mid-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -805,7 +849,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeP, "'P - Blender Gen 3 High-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeP, "'P - Blender Gen 3 High-Range'", "'New model on platform Gen 3'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -860,7 +904,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeM, "'M - Product Maintenance Blenders Gen 2'", "'Planned Maintenance for 3 years after launch'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeM, "'M - Product Maintenance Blenders Gen 2'", "'Planned Maintenance for 3 years after launch'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
@@ -905,7 +949,7 @@ namespace EstimationsAndPlanning
             if (EAP_STATUS.OK == status)
             {
                 // ****** ADD WORKPACKAGE ******************
-                status = wpTable.addWP(wpTypeM, "'M - Product Maintenance Blenders Gen 3'", "'Planned Maintenance for 3 years after launch'", ref lastAddedWPId);
+                status = wpTable.addWP(wsId, wpTypeM, "'M - Product Maintenance Blenders Gen 3'", "'Planned Maintenance for 3 years after launch'", ref lastAddedWPId);
                 if (EAP_STATUS.OK == status)
                 {
                     // ****** ADD JOB ******************
