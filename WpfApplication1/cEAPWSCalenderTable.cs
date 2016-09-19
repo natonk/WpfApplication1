@@ -12,7 +12,7 @@ namespace EstimationsAndPlanning
     {
         public cEAPWSCalenderTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "Calenders";
+            tableName = "calendars";
             columns = "calId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wsId INTEGER, calName VARCHAR(50) UNIQUE, calDescription text, calCreated DATETIME, calModified DATETIME";
             keys = "";
         }

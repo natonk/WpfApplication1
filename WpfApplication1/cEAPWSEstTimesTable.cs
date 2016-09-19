@@ -8,15 +8,15 @@ using MySql.Data.MySqlClient;
 
 namespace EstimationsAndPlanning
 {
-    class cEAPWSEstTimesTable : cEAPWSTable
+    class cEAPWSesttimesTable : cEAPWSTable
     {
         UInt16[] monthEst = new UInt16[36];
 
-        public cEAPWSEstTimesTable(MySqlConnection aConnection) : base(aConnection)
+        public cEAPWSesttimesTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "EstTimes";
+            tableName = "esttimes";
             columns = "estTimeId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, jobId INTEGER, estPeriod INTEGER, estType ENUM('MIN', 'LIKELY', 'MAX'),hours SMALLINT UNSIGNED, estCreated DATETIME";
-            keys = ", FOREIGN KEY (jobId) REFERENCES Jobs(jobId), FOREIGN KEY (estPeriod) REFERENCES EstTimePeriod(timePeriodId)";
+            keys = ", FOREIGN KEY (jobId) REFERENCES jobs(jobId), FOREIGN KEY (estPeriod) REFERENCES esttimeperiod(timePeriodId)";
         }
 
         public EAP_STATUS addEstimation( int aJobId, UInt16 aNbrHours, UInt16 aNbrMonths, UInt16 endOffsetMonths = 0, string dateCreatedString = ""  )

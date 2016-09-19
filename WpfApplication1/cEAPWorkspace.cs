@@ -16,11 +16,11 @@ namespace EstimationsAndPlanning
     class cEAPWorkspace
     {
         MySqlConnection m_DatabaseConnection;
-        string m_server = "localhost";
-        string m_user = "root";
+        string m_server = "eapmysqldb.cceymdn7zelc.us-west-2.rds.amazonaws.com";
+        string m_user = "awsuser";
         string m_port = "3306";
-        string m_password = "F98claes";
-        string m_database = "EAPDataBase";
+        string m_password = "admin!23";
+        string m_database = "eap_db";
 
         public EAP_STATUS createNewEmptyDatabase(String aDataBaseName)
         {
@@ -81,7 +81,7 @@ namespace EstimationsAndPlanning
                 cEAPWSJobsTable jobsTable = new cEAPWSJobsTable(m_DatabaseConnection);
                 jobsTable.createTable();
 
-                cEAPWSEstTimesTable estTimesTable = new cEAPWSEstTimesTable(m_DatabaseConnection);
+                cEAPWSesttimesTable estTimesTable = new cEAPWSesttimesTable(m_DatabaseConnection);
                 estTimesTable.createTable();
 
                 cEAPWSCalenderTable calenderTable = new cEAPWSCalenderTable(m_DatabaseConnection);
@@ -198,7 +198,7 @@ namespace EstimationsAndPlanning
 
             cEAPWSWPTable wpTable = new cEAPWSWPTable(m_DatabaseConnection);
             cEAPWSJobsTable jobsTable = new cEAPWSJobsTable(m_DatabaseConnection);
-            cEAPWSEstTimesTable estTimesTable = new cEAPWSEstTimesTable(m_DatabaseConnection);
+            cEAPWSesttimesTable estTimesTable = new cEAPWSesttimesTable(m_DatabaseConnection);
             cEAPWSCalenderTable calenderTable = new cEAPWSCalenderTable(m_DatabaseConnection);
             cEAPWSCalenderItemTable calenderItemTable = new cEAPWSCalenderItemTable(m_DatabaseConnection);
             cEAPWSUserTable userTable = new cEAPWSUserTable(m_DatabaseConnection);

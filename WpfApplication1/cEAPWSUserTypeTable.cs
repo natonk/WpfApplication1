@@ -13,7 +13,7 @@ namespace EstimationsAndPlanning
 
         public cEAPWSUserTypeTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "UserType";
+            tableName = "usertype";
             columns = "userTypeId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, userTypeName VARCHAR(50) UNIQUE, userTypeDescription TEXT";
             keys = "";
         }
@@ -32,7 +32,7 @@ namespace EstimationsAndPlanning
             status = this.addRow(fields, values);
 
             name = "'Scheduler'";
-            description = "'Creates and schedules calenders'";
+            description = "'Creates and schedules calendars'";
             values = name + ", " + description;
             status = this.addRow(fields, values);
 

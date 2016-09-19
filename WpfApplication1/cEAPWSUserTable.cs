@@ -13,9 +13,9 @@ namespace EstimationsAndPlanning
 
         public cEAPWSUserTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "WSUsers";
+            tableName = "wsusers";
             columns = "wsuserId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wsId INTEGER, userId INTEGER, userTypeId INTEGER";
-            keys = ", FOREIGN KEY (wsId) REFERENCES WorkSpace(wsId), FOREIGN KEY (userTypeId) REFERENCES UserType(userTypeId)";
+            keys = ", FOREIGN KEY (wsId) REFERENCES WorkSpace(wsId), FOREIGN KEY (userTypeId) REFERENCES usertype(userTypeId)";
         }
 
         public EAP_STATUS addUser( int aWSId, int aUserId, int aUserTypeId )

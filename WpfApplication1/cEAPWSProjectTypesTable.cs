@@ -13,7 +13,7 @@ namespace EstimationsAndPlanning
         
         public cEAPWSProjectTypesTable(MySqlConnection aConnection): base(aConnection)
         {
-            tableName = "WPTypes";
+            tableName = "wptypes";
             columns = "wpTypeId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, name_short CHAR(1) UNIQUE, name_long VARCHAR(40) UNIQUE, description TEXT";
             keys = "";
 

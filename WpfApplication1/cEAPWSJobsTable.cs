@@ -13,9 +13,9 @@ namespace EstimationsAndPlanning
         
         public cEAPWSJobsTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "Jobs";
+            tableName = "jobs";
             columns = "jobId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wpId INTEGER, compId INTEGER, jobComment VARCHAR(255), jobCreated DATETIME, jobModified DATETIME";
-            keys = ", FOREIGN KEY (compId) REFERENCES Competences(compId), FOREIGN KEY (wpId) REFERENCES WorkPackage(wpId)";
+            keys = ", FOREIGN KEY (compId) REFERENCES competences(compId), FOREIGN KEY (wpId) REFERENCES workpackage(wpId)";
         }
 
         public EAP_STATUS addJob(int aWPId, int aCompId, string  aComment, ref int newJobId)

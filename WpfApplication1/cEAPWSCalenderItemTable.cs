@@ -13,9 +13,9 @@ namespace EstimationsAndPlanning
 
         public cEAPWSCalenderItemTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "CalItems";
+            tableName = "calitems";
             columns = "calItemId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, calId INTEGER, wpId INTEGER, calItemEndTime DATETIME, calItemCreated DATETIME";
-            keys = ", FOREIGN KEY (calId) REFERENCES Calenders(calId), FOREIGN KEY (wpId) REFERENCES Workpackage(wpId)";
+            keys = ", FOREIGN KEY (calId) REFERENCES calendars(calId), FOREIGN KEY (wpId) REFERENCES workpackage(wpId)";
         }
 
         public EAP_STATUS addCalenderItem(int aCalId, int aWPId, string date)

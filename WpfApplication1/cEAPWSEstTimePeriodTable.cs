@@ -13,7 +13,7 @@ namespace EstimationsAndPlanning
 
         public cEAPWSEstTimePeriodTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "EstTimePeriod";
+            tableName = "esttimeperiod";
             columns = "timePeriodId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, timePeriodDescription CHAR(15) UNIQUE";
             keys = "";
         }

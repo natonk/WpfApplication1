@@ -13,9 +13,9 @@ namespace EstimationsAndPlanning
 
         public cEAPWSWPTable(MySqlConnection aConnection) : base(aConnection)
         {
-            tableName = "WorkPackage";
+            tableName = "workpackage";
             columns = "wpId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, wsId INTEGER, wpTypeId INTEGER, wpName VARCHAR(50) UNIQUE, wpDescription TEXT, wpCreated DATETIME, wpModified DATETIME";
-            keys = ", FOREIGN KEY (wsId) REFERENCES WorkSpace(wsId), FOREIGN KEY (wpTypeId) REFERENCES WPTypes(wpTypeId)";
+            keys = ", FOREIGN KEY (wsId) REFERENCES WorkSpace(wsId), FOREIGN KEY (wpTypeId) REFERENCES wptypes(wpTypeId)";
         }
 
         public EAP_STATUS addWP( int aWSId, int aWPType, string aWPName, string aWPDescription, ref int newWPId)

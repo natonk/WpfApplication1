@@ -38,8 +38,8 @@ namespace WpfApplication1
                 {
                     //MessageBox.Show("Creating a Example Workspace");
                     myWorkSpace = new cEAPWorkspace();
-                    myWorkSpace.createNewStdDatabase("EAPTestDataBaseExample");
-                    myWorkSpace.populateDatabaseWithExamples("EAPTestDataBaseExample");
+                    myWorkSpace.createNewStdDatabase("eap_example_db");
+                    myWorkSpace.populateDatabaseWithExamples("eap_example_db");
 
 
                 }
@@ -47,7 +47,7 @@ namespace WpfApplication1
                 {
                     //MessageBox.Show("Creating a STD Workspace");
                     myWorkSpace = new cEAPWorkspace();
-                    myWorkSpace.createNewStdDatabase("EAPTestDataBaseStd");
+                    myWorkSpace.createNewStdDatabase("eap_std_db");
 
 
                 }
@@ -55,14 +55,14 @@ namespace WpfApplication1
                 {
                     //MessageBox.Show("Creating an empty Workspace");
                     myWorkSpace = new cEAPWorkspace();
-                    myWorkSpace.createNewEmptyDatabase("EAPTestDataBaseNew");
+                    myWorkSpace.createNewEmptyDatabase("eap_db");
 
                 }
                 else if (rbContinueWithLastUsedWS.IsChecked == true)
                 {
                     //MessageBox.Show("Creating an empty Workspace");
                     myWorkSpace = new cEAPWorkspace();
-                    myWorkSpace.openExistingDatabase("EAPTestDataBaseNew");
+                    myWorkSpace.openExistingDatabase("eap_example_db");
                 }
                 else
                 {

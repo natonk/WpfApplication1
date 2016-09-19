@@ -13,7 +13,7 @@ namespace EstimationsAndPlanning
         public cEAPWSNewestEstView(MySqlConnection aConnection) : base(aConnection)
         {
             viewName = "newest_est_view";
-            cmdString = "(SELECT max(estCreated) mostRecent, estTimeId, jobId, estPeriod, hours, estCreated FROM eaptestdatabaseexample.esttimes GROUP BY jobId, estPeriod)";
+            cmdString = "(SELECT max(estCreated) mostRecent, estTimeId, jobId, estPeriod, hours, estCreated FROM esttimes GROUP BY jobId, estPeriod)";
             
         } 
     }
